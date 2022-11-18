@@ -148,8 +148,8 @@ AUTHENTICATION_BACKENDS = [
 # SITE_ID = 1
 
 # LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'http://127.0.0.1:3000/'
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:3000/'
+# LOGOUT_REDIRECT_URL = 'http://127.0.0.1:3000/'
+# LOGIN_REDIRECT_URL = 'http://127.0.0.1:3000/'
 
 
 # Internationalization
@@ -184,10 +184,10 @@ SIMPLE_JWT = {
 }
 
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-)
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:3000',
+#     'http://127.0.0.1:3000',
+# )
 
 CORS_ALLOW_ALL_ORIGIN=True
 
