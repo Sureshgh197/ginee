@@ -1,0 +1,43 @@
+Register:
+
+{
+"email":"aa@aa.aa",
+"password":"123",
+"full_name":"123",
+"organization":""
+}
+
+
+
+Login:
+
+{
+"email":"test@mail.com",
+"password":"123",
+}
+
+
+Saveall:
+
+{
+
+"data": [ 
+    {
+    "jsondata":{
+    "c":1
+    }
+    },
+    
+    {
+    "jsondata":{
+    "c":2
+    }
+    }
+
+]
+
+}
+
+**************Google Authentication************
+https://oauth2.googleapis.com/tokeninfo?access_token=ya29.a0Aa4xrXP0tMSX4UEmCaXf5M4NFr7v-IrsPN7ISEeCn2JA_MsobHxFdELMzcx9G7eVZgQsjka9vs1JLCMd4q7XLnjmINDDSd5bFPI6J1QHQPe3C1Vo-8aCBnM-J4lt1lrqtyJn6H2lqu_hD63Jo_j2k9rA2y-8lgaCgYKATASARASFQEjDvL9CILwInu0WT08i2U-11CAaw0165
+

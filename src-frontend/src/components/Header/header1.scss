@@ -1,0 +1,76 @@
+// $pt: 14px;
+// $five: 5px;
+// $anime: all .5s ease;
+
+// .header {
+//     height: 6.5%;
+//     background-color: #262626;
+//     display: flex;
+//     width: 100%;
+//     justify-content: space-between;
+
+//     #rectanglee {
+//         padding: $five;
+//         width: auto;
+//         border-radius: 20px;
+//         display: flex;
+//         justify-content: space-around;
+//         height: 60%;
+//     }
+
+    
+
+//     .slides {
+//         background-color: #3A3A3A;
+//         transition: $anime;
+
+//         animation-delay: 2s;
+//         -webkit-animation-delay: 0s, .5s, .5s;
+//         animation: mymove 5s infinite;
+//         -webkit-animation-duration: 500ms, 1000ms, 1000ms;
+
+//         @keyframes mymove {
+//             from {
+//                 left: 0px;
+//             }
+
+//             to {
+//                 left: 200px;
+//             }
+//         }
+
+//         .subapps {
+//             transform: translateX(0%);
+//             padding-right: 14px;
+//             width: 15px;
+//             transition: $anime;
+//         }
+//     }
+
+//     .collapses {
+//         transition: $anime;
+
+//         animation-delay: 2s;
+//         -webkit-animation-delay: 0s, .5s, .5s;
+//         animation: mymove 5s;
+//         -webkit-animation-duration: 500ms, 1000ms, 1000ms;
+
+//         @keyframes mymove {
+//             from {
+//                 left: 0px;
+//             }
+
+//             to {
+//                 left: 200px;
+//             }
+//         }
+//         .subapps {
+//             transform: translateX(-100%);
+//             opacity: 0;
+//             transition: all 2s ease-in-out;
+//             z-index: -1;
+//             position: absolute;
+//             width: 0
+//         }
+//     }
+// }

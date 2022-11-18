@@ -1,0 +1,110 @@
+export const devices=[
+    {
+        id: 1,
+        devicename:'Ipad mini',
+        width: 500,
+        height: 600
+    },
+    {
+        id: 2,
+        devicename:'Ipad mini ',
+        width:  300,
+        height:  200,
+    },
+    {
+        id: 3,
+        devicename:'Ipad 10.5"',
+        width:  750,
+        height:  650,
+    },
+    {
+        id: 4,
+        devicename:'Ipad 11',
+        width:  400,
+        height:  350,
+    },
+    {
+        id: 5,
+        devicename:'Ipad 12.9',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 6,
+        devicename:'Ipad 2',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 7,
+        devicename:'Ipad 9.7',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 8,
+        devicename:'Nexus 5',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 9,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 10,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 11,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 12,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 13,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 14,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 15,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 16,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 17,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+    {
+        id: 18,
+        devicename:'Apple watch',
+        width:  500,
+        height:  650,
+    },
+]
