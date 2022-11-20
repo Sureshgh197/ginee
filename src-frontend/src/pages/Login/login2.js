@@ -3,10 +3,6 @@ import Ginee from '../../assets/images/ginee.svg'
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-axios.defaults.withCredentials = true;
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'x-csrftoken';
-
 const Loginn = () => {
     const [pages, setPages] = useState(true);
     const [state, setState] = useState({
@@ -34,12 +30,27 @@ const Loginn = () => {
 
     const headers = {
         'Content-Type': 'application/json',
-        // "access-control-allow-origin": "*",
-        "Access-Control-Allow-Origin": "*",
-        // 'withCredentials': true,
-        // "xsrfCookieName": 'csrftoken'
-        // "xsrfHeaderName": 'x-csrftoken'
+        'Access-Control-Allow-Origin': 'http://13.233.34.229:3000',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept",
+        // 'X-CSRFToken': await getCsrfToken()
+        
     }
+    
+
+
+    let _csrfToken = null;
+
+    async function getCsrfToken() {
+        if (_csrfToken === null) {
+          const response = await fetch('http://13.233.34.229:8000/csrf/', {
+            credentials: 'include',
+          });
+          const data = await response.json();
+          _csrfToken = data.csrfToken;
+        }
+        return _csrfToken;
+      }
 
 
 
@@ -57,6 +68,8 @@ const Loginn = () => {
         })
     }
 
+    
+
     async function handleLogin(e) {
         try {
             // await axios.post(`${process.env}${login}`, {
@@ -64,14 +77,23 @@ const Loginn = () => {
             await axios.post('http://13.233.34.229:8000/auth/login/', {
                 email: state.email,
                 password: state.password
-            }, {
-                headers: headers
-            }).then((response) => {
+            },
+            {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept",
+                'X-CSRFToken': await getCsrfToken(),
+                'withCredentials': true                
+                
+            },
+            
+            ).then((response) => {
                 if (response.status == 200) {
                     {
                         console.log(response)
                         switch (response.data.state) {
-                            case 'USER_LOGGED_IN':
+                            case 'USER_LOGGED_IN':                                
                                 navigate('/home');
                                 break;
                             case 'USER_ACCOUNT_NOT_VERIFIED':
@@ -103,6 +125,63 @@ const Loginn = () => {
         }
 
     }
+
+    async function handleLogout(e) {
+        try {
+
+            await axios.get('http://13.233.34.229:8000/auth/logout/',
+            {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept",
+                'X-CSRFToken': await getCsrfToken(),
+                'withCredentials': true
+                
+            }
+            ).then((response) => {
+                if (response.status == 200) {
+                    {
+                        console.log(response)
+                        
+                    }
+                } else {
+                    alert('Server error')
+                }
+            })
+
+        } catch (error) {
+            console.error(error)
+        }
+
+    } 
+
+    async function handleStore(e) {
+        try {
+            // await axios.post(`${process.env}${login}`, {
+
+            await axios.get('http://13.233.34.229:8000/store/',
+            {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept",
+                // 'X-CSRFToken': await getCsrfToken()
+                'withCredentials': true
+                
+            }
+            ).then((response) => {
+                
+                        console.log(response)
+               
+            })
+
+        } catch (error) {
+            console.error(error)
+        }
+
+    } 
+    
 
 
     async function handleSignup() {
@@ -217,6 +296,9 @@ const Loginn = () => {
                     </div>
                 </div>
             </div>
+            <div className='button'>
+                        <button className='btn btn-danger' onClick={(e) => handleLogout(e)}>Logout</button>
+                    </div>
         </div>
     )
 }
