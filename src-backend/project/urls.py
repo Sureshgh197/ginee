@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth import views as auth_views
 # from loginApp import user
-from .views import handleAPI
+from .views import handleAPI,csrf
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('auth/',include('loginApp.urls')),
     path('social-auth/',include('social_django.urls',namespace='social')),
     path('logout/',auth_views.LogoutView.as_view(),name='logout'),
-    path('api/',handleAPI.as_view())
+    path('api/',handleAPI.as_view()),
+    path('csrf/', csrf),
         
 ]

@@ -150,7 +150,7 @@ def login_cred(request):
         password = request.data['password']
 
     except:
-        login_data["state"] = "INVALID DATA"
+        login_data["state"] = "INVALID_DATA"
         login_data["errors"] = "one or more fields incorrect"
         return Response(login_data, status=status.HTTP_200_OK)
 

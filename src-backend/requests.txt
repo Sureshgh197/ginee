@@ -1,43 +1,140 @@
-Register:
+^^^^^^^^^^^LOGIN APP^^^^^^^^^^^
 
+REGISTER API:
+
+endpoint: {host}/auth/register/
+method: POST
+
+Request Body:
 {
-"email":"aa@aa.aa",
-"password":"123",
-"full_name":"123",
+"email":"",
+"password":"",
+"full_name":"",
 "organization":""
 }
 
+Responses:
 
+response1: 
+{"state":"USER_EXISTS"}
 
-Login:
-
+response2:
 {
-"email":"test@mail.com",
-"password":"123",
+"state":"USER_REGISTERED",
+"state2":"EMAIL_SENT"
+}
+
+response3:
+{
+"state":"USER_REGISTERED",
+"state2":"EMAIL_SENT_UNSUCCESSFUL"
+}
+
+response4:
+{
+"state":"REGISTRATION_UNSUCCESSFUL",
+"errors":"except_block_********"
+}
+
+************************************************************
+LOGIN API:
+
+
+endpoint: {host}/auth/login/
+method: POST
+
+Request Body:
+{
+"email":"",
+"password":""
+}
+
+Responses:
+
+response1: 
+{"state":"USER_LOGGED_IN"}
+
+response2:
+{
+"state":"USER_INVALID_CREDENTIALS"
+}
+
+response3:
+{
+"state":"USER_DOES_NOT_EXIST"
+}
+
+response4:
+{
+"state":"USER_ACCOUNT_NOT_VERIFIED"
+}
+
+response5:
+{
+"state":"INVALID_DATA"
+"errors":"one or more fields incorrect"
+}
+
+************************************************************
+LOGOUT API
+
+endpoint: {host}/auth/logout/
+method: GET
+
+response1:
+{
+"state":"USER_LOGGED_OUT"
+}
+
+response2:
+{
+"state":"ANONYMOUS_USER"
 }
 
 
-Saveall:
+************************************************************
+EMAIL VERIFICATION API
 
+endpoint: {host}/auth/email-verify/?token=aaaaaaaaaaaaaaaa
+method: GET
+
+response1:
 {
-
-"data": [ 
-    {
-    "jsondata":{
-    "c":1
-    }
-    },
-    
-    {
-    "jsondata":{
-    "c":2
-    }
-    }
-
-]
-
+"state":"EMAIL_ACTIVATED"
 }
 
-**************Google Authentication************
-https://oauth2.googleapis.com/tokeninfo?access_token=ya29.a0Aa4xrXP0tMSX4UEmCaXf5M4NFr7v-IrsPN7ISEeCn2JA_MsobHxFdELMzcx9G7eVZgQsjka9vs1JLCMd4q7XLnjmINDDSd5bFPI6J1QHQPe3C1Vo-8aCBnM-J4lt1lrqtyJn6H2lqu_hD63Jo_j2k9rA2y-8lgaCgYKATASARASFQEjDvL9CILwInu0WT08i2U-11CAaw0165
+response2:
+{
+"state":"EMAIL_ALREADY_ACTIVATED"
+}
 
+response3:
+{
+"state":"ACTIVATION_EXPIRED"
+}
+
+response4:
+{
+"state":"INVALID_TOKEN"
+}
+
+************************************************************
+^^^^^^^^^^^DESIGN APP^^^^^^^^^^^
+
+STORE IMAGE API
+
+endpoint: {host}/store/
+method: POST
+
+Request Body:
+{
+"jsondata":{
+    "text":"hi",
+    "size":10
+}
+}
+
+response1:
+{
+"state":"EMAIL_ACTIVATED"
+}

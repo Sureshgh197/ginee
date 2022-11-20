@@ -7,12 +7,14 @@ from .authentication import ExpiringTokenAuthentication
 
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework import status
 
 class JsonListView(APIView):
-    authentication_classes = [ExpiringTokenAuthentication]
+    # authentication_classes = [ExpiringTokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     # parser_classes = [JSONParser]
 
@@ -26,40 +28,59 @@ class JsonListView(APIView):
 
     def post(self,request,format=None):
         
+        save_state = {}
+
         serializer = JsonFileSerializer(data=request.data)
         
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            save_state["state"] = "FILE_SAVED"
+
+        else:
+            save_state["state"] = "FILE_NOT_SAVED"
+            save_state["error"] = serializer.errors
+
+        return Response(save_state, status=status.HTTP_200_OK)
 
 
 class JsonDetailView(APIView):
-    authentication_classes = [ExpiringTokenAuthentication]
+    # authentication_classes = [ExpiringTokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     
 
     def get_object(self, pk):
         try:
             return JsonModel.objects.get(pk=pk)
-        except JsonModel.DoesNotExist:
-            raise Http404
+        except:
+            return "FILE_NOT_FOUND"
 
-    def get(self, request,pk, format=None):            
+    def get(self, request,pk, format=None): 
+
+            image_data = {}
+
             jsondata = self.get_object(pk)
-            serializer = JsonFileSerializer(jsondata)
-            return Response(serializer.data)
 
+            if jsondata == "FILE_NOT_FOUND":
+                image_data["state"] = "FILE_NOT_FOUND"
+            
+            else:
+                serializer = JsonFileSerializer(jsondata)
+                image_data["state"] = "FILE_FOUND"
+                image_data["data"] = serializer.data
 
-def GoogleTemp(request):
-    return render(request,'designApp/index.html',{})
+            return Response(image_data, status=status.HTTP_200_OK)
 
 
 
 class SaveAllAPI(APIView):
 
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def post(self,request,format=None):
         
+        save_state = {}
         data = request.data["data"]
 
         try:
@@ -69,11 +90,12 @@ class SaveAllAPI(APIView):
                     serializer.save()
                 else:
                     continue
-
-            return Response("Files saved successfully")
+            save_state["state"] = "FILES_SAVED"
+            return Response(save_state, status=status.HTTP_200_OK)
 
         except:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            save_state["state"] = "FILES_NOT_SAVED"
+            return Response(save_state, status=status.HTTP_200_OK)
 
 
 
